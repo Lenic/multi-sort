@@ -1,8 +1,12 @@
 import _ from 'underscore';
 
 import sort from '../src';
+import { defaultPropertyComparer } from '../src/defaultComparer';
 
 const original = _.range(1000000);
+
+const comparer = defaultPropertyComparer(x => x)
+  , comparerOdd = defaultPropertyComparer(x => -x);
 
 const helper = (type, list, action) => {
   console.time(type);
@@ -10,6 +14,25 @@ const helper = (type, list, action) => {
   console.timeEnd(type);
 }
 
-helper('heap', _.clone(original), v => sort(v, 'heap'));
-helper('quick', _.clone(original), v => sort(v, 'quick'));
-helper('underscore', _.clone(original), v => _.sortBy(v, x => x));
+helper('heap.long-array', _.clone(original), v => sort(v, 'heap'));
+helper('quick.long-array', _.clone(original), v => sort(v, 'quick'));
+helper('underscore.long-array', _.clone(original), v => _.sortBy(v, x => x));
+
+const cycle = (type, list, count) => {
+  console.time(type);
+  for (let i = 0; i < count; i++) {
+    if (i % 2 === 0) {
+      sort(list, type, comparer);
+    } else {
+      sort(list, type, comparerOdd);
+    }
+  }
+  console.timeEnd(type);
+}
+
+console.log(`\n${_.chain(_.range(80)).map(() => '-').value().join('')}\n`);
+
+const shortRange = _.range(10).reverse();
+
+cycle('heap.short-array', _.clone(shortRange), 1000000);
+cycle('quick.short-array', _.clone(shortRange), 1000000);
