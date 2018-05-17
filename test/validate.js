@@ -1,6 +1,6 @@
 import _ from 'underscore';
 
-import sort from '../src';
+import { sort } from '../src';
 
 const original = [10, 9, 8, 6, 5, 7, 4, 3, 2, 1, 0];
 

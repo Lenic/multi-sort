@@ -2,9 +2,10 @@
   "name": "multi-sort",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/",
   "scripts": {
     "base": "node -r babel-register",
+    "build": "babel src/ -d dist/",
     "test:performance": "npm run base -- test/performance.js",
     "test:chain": "npm run base -- test/validate.chain.js",
     "test:validate": "npm run base -- test/validate.js",
@@ -14,6 +15,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-0": "^6.24.1",
