@@ -43,3 +43,5 @@ function partition(list, left, right, comparer) {
 export default function quickSort(list, comparer) {
   quick(list, 0, list.length - 1, comparer);
 }
+
+export const segment = quick;

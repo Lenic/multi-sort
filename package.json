@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "base": "node -r babel-register",
+    "test:performance": "npm run base -- test/performance.js",
+    "test:chain": "npm run base -- test/validate.chain.js",
+    "test:validate": "npm run base -- test/validate.js",
+    "test:segment": "npm run base -- test/validate.segment.js"
   },
   "keywords": [],
   "author": "",

@@ -7,8 +7,41 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "启动程序",
-      "program": "${workspaceFolder}/test/validate.js",
+      "name": "performance",
+      "program": "${workspaceFolder}/test/validate.performance.js",
+      "runtimeArgs": [
+        "--nolazy",
+        "-r",
+        "babel-register"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "chain",
+      "program": "${workspaceFolder}/test/validate.chain.js",
+      "runtimeArgs": [
+        "--nolazy",
+        "-r",
+        "babel-register"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "validate",
+      "program": "${workspaceFolder}/test/validate.validate.js",
+      "runtimeArgs": [
+        "--nolazy",
+        "-r",
+        "babel-register"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "segment",
+      "program": "${workspaceFolder}/test/validate.segment.js",
       "runtimeArgs": [
         "--nolazy",
         "-r",

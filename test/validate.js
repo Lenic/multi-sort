@@ -10,11 +10,11 @@ const comparer = x => x
 (function (list, comparer, comparerOdd) {
   console.log('heap.list.begin', list);
 
-  sort(list, 'heap', comparer);
+  sort(list, comparer, 'heap');
 
   console.log('heap.list.sort.first', list);
 
-  sort(list, 'heap', comparerOdd);
+  sort(list, comparerOdd, 'heap');
 
   console.log('heap.list.sort.odd', list);
   console.log();
@@ -23,11 +23,11 @@ const comparer = x => x
 (function (list, comparer, comparerOdd) {
   console.log('quick.list.begin', list);
 
-  sort(list, 'quick', comparer);
+  sort(list, comparer, 'quick');
 
   console.log('quick.list.sort.first', list);
 
-  sort(list, 'quick', comparerOdd);
+  sort(list, comparerOdd, 'quick');
 
   console.log('quick.list.sort.odd', list);
   console.log();
