@@ -1,6 +1,6 @@
 import _ from 'underscore';
 
-import sort from '../src';
+import { sort } from '../src';
 import { defaultPropertyComparer } from '../src/defaultComparer';
 
 const original = _.range(1000000);
@@ -14,17 +14,17 @@ const helper = (type, list, action) => {
   console.timeEnd(type);
 }
 
-helper('heap.long-array', _.clone(original), v => sort(v, 'heap'));
-helper('quick.long-array', _.clone(original), v => sort(v, 'quick'));
+helper('heap.long-array', _.clone(original), v => sort(v, x => -x, 'heap'));
+helper('quick.long-array', _.clone(original), v => sort(v, x => -x, 'quick'));
 helper('underscore.long-array', _.clone(original), v => _.sortBy(v, x => x));
 
 const cycle = (type, list, count) => {
   console.time(type);
   for (let i = 0; i < count; i++) {
     if (i % 2 === 0) {
-      sort(list, type, comparer);
+      sort(list, comparer, type);
     } else {
-      sort(list, type, comparerOdd);
+      sort(list, comparerOdd, type);
     }
   }
   console.timeEnd(type);

@@ -1,4 +1,4 @@
-import sort from './index';
+import { sort, segment } from './sort';
 
 export class Chain {
   constructor(list) {
@@ -40,6 +40,28 @@ export class Chain {
       };
 
     sort(this.$list, comparer, type);
+  }
+
+  execSegment(left, right, type = 'quick') {
+    if (!this.$comparers.length) {
+      return;
+    }
+
+    const comparers = this.$comparers.concat([])
+      , comparer = (x, y) => {
+        let value = -1;
+
+        for (let i = 0; i < comparers.length; i++) {
+          value = comparers[i](x, y);
+          if (value !== 0) {
+            return value;
+          }
+        }
+
+        return value;
+      };
+
+    segment(this.$list, left, right, comparer, type);
   }
 }
 

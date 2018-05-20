@@ -1,7 +1,6 @@
 import _ from 'underscore';
 
-import chain from '../src/chain';
-import { segment as quickSort } from '../src/quickSort';
+import { chain } from '../src';
 import { defaultPropertyComparer } from '../src/defaultComparer';
 
 const original = [
@@ -23,10 +22,21 @@ const comparerX = defaultPropertyComparer(v => v.x)
   , comparerIndex = defaultPropertyComparer(v => v.index);
 
 (function (list) {
-  console.log('quick.list.begin', _.map(list, 'index'));
+  const convertedList = _.clone(list);
+  console.log('quick.list.begin', _.map(convertedList, 'index'));
 
-  chain(list).sort(comparerX).sort(comparerY).sort(comparerIndex).exec();
+  chain(convertedList).sort(comparerX).sort(comparerY).sort(comparerIndex).exec();
 
+  console.log('quick.list.sort.end', _.map(convertedList, 'index'));
   console.log();
-  console.log('quick.list.sort.end', _.map(list, 'index'));
+})(_.clone(original));
+
+(function (list) {
+  const convertedList = _.clone(list);
+  console.log('segment.quick.list.begin', _.map(convertedList, 'index'));
+
+  chain(convertedList).sort(comparerX).sort(comparerY).sort(comparerIndex).execSegment(2, 8);
+
+  console.log('segment.quick.list.sort.end', _.map(convertedList, 'index'));
+  console.log();
 })(_.clone(original));
