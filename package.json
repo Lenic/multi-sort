@@ -6,6 +6,7 @@
   "scripts": {
     "base": "node -r babel-register",
     "build": "babel src/ -d dist/",
+    "test:arrayx": "npm run base -- test/utils/arrayX.js",
     "test:performance": "npm run base -- test/performance.js",
     "test:chain": "npm run base -- test/validate.chain.js",
     "test:validate": "npm run base -- test/validate.js",

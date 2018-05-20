@@ -1,4 +1,5 @@
 import { sort, segment } from './sort';
+import { defaultPropertyComparer } from './utils/defaultComparer';
 
 export class Chain {
   constructor(list) {
@@ -20,7 +21,7 @@ export class Chain {
     return this;
   }
 
-  exec(type = 'quick') {
+  exec(type = 'quick', isShadow = false) {
     if (!this.$comparers.length) {
       return;
     }
@@ -39,10 +40,10 @@ export class Chain {
         return value;
       };
 
-    sort(this.$list, comparer, type);
+    return sort(this.$list, comparer, type, isShadow);
   }
 
-  execSegment(left, right, type = 'quick') {
+  execSegment(left, right, type = 'quick', isShadow = false) {
     if (!this.$comparers.length) {
       return;
     }
@@ -61,7 +62,7 @@ export class Chain {
         return value;
       };
 
-    segment(this.$list, left, right, comparer, type);
+    return segment(this.$list, left, right, comparer, type, isShadow);
   }
 }
 

@@ -1,6 +1,7 @@
-import heapSort, { segment as heap } from './heapSort';
-import quickSort, { segment as quick } from './quickSort';
-import { defaultComparer, defaultPropertyComparer } from './defaultComparer';
+import ArrayX from './utils/arrayX';
+import heapSort, { segment as heap } from './algorithms/heapSort';
+import quickSort, { segment as quick } from './algorithms/quickSort';
+import { defaultComparer, defaultPropertyComparer } from './utils/defaultComparer';
 
 function getComparer(comparer) {
   let executor = comparer;
@@ -14,22 +15,24 @@ function getComparer(comparer) {
   return executor;
 }
 
-export function sort(list, comparer = defaultComparer, type = 'quick') {
+export function sort(list, comparer = defaultComparer, type = 'quick', isShadow = false) {
   if (list.length <= 1) {
     return list;
   }
 
+  const wrappedList = new ArrayX(list, isShadow);
+
   let executor = getComparer(comparer);
   if (type === 'heap') {
-    heapSort(list, executor);
+    heapSort(wrappedList, executor);
   } else if (type === 'quick') {
-    quickSort(list, executor);
+    quickSort(wrappedList, executor);
   }
 
-  return list;
+  return isShadow ? wrappedList.toArray() : list;
 }
 
-export function segment(list, left, right, comparer = defaultComparer, type = 'quick') {
+export function segment(list, left, right, comparer = defaultComparer, type = 'quick', isShadow = false) {
   if (left >= right || right < 0) {
     return;
   }
@@ -39,12 +42,14 @@ export function segment(list, left, right, comparer = defaultComparer, type = 'q
     return list;
   }
 
+  const wrappedList = new ArrayX(list, isShadow);
+
   let executor = getComparer(comparer);
   if (type === 'heap') {
-    heap(list, left, right, executor);
+    heap(wrappedList, left, right, executor);
   } else if (type === 'quick') {
-    quick(list, left, right, executor);
+    quick(wrappedList, left, right, executor);
   }
 
-  return list;
+  return isShadow ? wrappedList.toArray() : list;
 }

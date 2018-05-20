@@ -20,6 +20,20 @@ const comparer = x => x
   console.log();
 })(_.clone(original), comparer, comparerOdd);
 
+
+(function (list, comparer, comparerOdd) {
+  console.log('heap.shadow.list.begin', list);
+
+  let convertedList = sort(list, comparer, 'heap', true);
+
+  console.log('heap.shadow.list.sort.first', convertedList);
+
+  convertedList = sort(convertedList, comparerOdd, 'heap', true);
+
+  console.log('heap.shadow.list.sort.odd', list);
+  console.log();
+})(_.clone(original), comparer, comparerOdd);
+
 (function (list, comparer, comparerOdd) {
   console.log('quick.list.begin', list);
 
@@ -33,6 +47,18 @@ const comparer = x => x
   console.log();
 })(_.clone(original), comparer, comparerOdd);
 
+(function (list, comparer, comparerOdd) {
+  console.log('quick.shadow.list.begin', list);
+
+  let convertedList = sort(list, comparer, 'quick', true);
+
+  console.log('quick.shadow.list.sort.first', convertedList);
+
+  convertedList = sort(convertedList, comparerOdd, 'quick', true);
+
+  console.log('quick.shadow.list.sort.odd', convertedList);
+  console.log();
+})(_.clone(original), comparer, comparerOdd);
 
 (function (list, comparer, comparerOdd) {
   console.log('underscore.list.begin', list);

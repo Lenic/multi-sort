@@ -15,22 +15,22 @@ function quick(list, left, right, comparer) {
 }
 
 function partition(list, left, right, comparer) {
-  const pivot = list[Math.floor((left + right) / 2)];
+  const pivot = list.get(Math.floor((left + right) / 2));
 
   let i = left
     , j = right;
 
   while (i <= j) {
-    while (i <= right && comparer(list[i], pivot) === -1) {
+    while (i <= right && comparer(list.get(i), pivot) === -1) {
       i++;
     }
 
-    while (j >= left && comparer(list[j], pivot) === 1) {
+    while (j >= left && comparer(list.get(j), pivot) === 1) {
       j--;
     }
 
     if (i <= j) {
-      [list[i], list[j]] = [list[j], list[i]];
+      list.swap(i, j);
 
       i++;
       j--;

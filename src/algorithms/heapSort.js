@@ -3,12 +3,15 @@ function heap(list, left, length, comparer, constant = 0) {
     , childIndex = -1;
 
   for (; (childIndex = (i - constant) * 2 + 1 + constant) < length; i = childIndex) {
-    if ((childIndex + 1 < length) && comparer(list[childIndex], list[childIndex + 1]) === -1) {
+    if (
+      (childIndex + 1 < length) &&
+      comparer(list.get(childIndex), list.get(childIndex + 1)) === -1
+    ) {
       childIndex++;
     }
 
-    if (comparer(list[i], list[childIndex]) === -1) {
-      [list[i], list[childIndex]] = [list[childIndex], list[i]];
+    if (comparer(list.get(i), list.get(childIndex)) === -1) {
+      list.swap(i, childIndex);
     }
   }
 }
@@ -28,7 +31,7 @@ export function segment(list, left, right, comparer) {
   for (let i = 0; i < length; i++) {
     lastIndex = length - i - 1;
 
-    [list[left], list[lastIndex + left]] = [list[lastIndex + left], list[left]];
+    list.swap(left, lastIndex + left);
 
     heap(list, left, lastIndex + left, comparer, left);
   }

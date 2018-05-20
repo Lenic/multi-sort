@@ -1,7 +1,7 @@
 import _ from 'underscore';
 
 import { chain } from '../src';
-import { defaultPropertyComparer } from '../src/defaultComparer';
+import { defaultPropertyComparer } from '../src/utils/defaultComparer';
 
 const original = [
   { x: 1, y: 2, index: 0 },
@@ -38,5 +38,35 @@ const comparerX = defaultPropertyComparer(v => v.x)
   chain(convertedList).sort(comparerX).sort(comparerY).sort(comparerIndex).execSegment(2, 8);
 
   console.log('segment.quick.list.sort.end', _.map(convertedList, 'index'));
+  console.log();
+})(_.clone(original));
+
+(function (list) {
+  const convertedList = _.clone(list);
+  console.log('quick.shadow.list.begin', _.map(convertedList, 'index'));
+
+  const list2 = chain(convertedList)
+    .sort(comparerX)
+    .sort(comparerY)
+    .sort(comparerIndex)
+    .exec('quick', true);
+
+  console.log('quick.shadow.list.sort.end.original', _.map(convertedList, 'index'));
+  console.log('quick.shadow.list.sort.end.converted', _.map(list2, 'index'));
+  console.log();
+})(_.clone(original));
+
+(function (list) {
+  const convertedList = _.clone(list);
+  console.log('segment.shadow.quick.list.begin', _.map(convertedList, 'index'));
+
+  const list2 = chain(convertedList)
+    .sort(comparerX)
+    .sort(comparerY)
+    .sort(comparerIndex)
+    .execSegment(2, 8, 'quick', true);
+
+  console.log('segment.shadow.quick.list.sort.end.original', _.map(convertedList, 'index'));
+  console.log('segment.shadow.quick.list.sort.end.converted', _.map(list2, 'index'));
   console.log();
 })(_.clone(original));
