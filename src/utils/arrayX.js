@@ -3,7 +3,9 @@ export default class ArrayX {
     this.$list = list;
     this.$isShadow = isShadow;
 
-    this.$indexes = new Array(list.length);
+    if (isShadow) {
+      this.$indexes = new Array(list.length);
+    }
 
     this.length = this.$list.length;
   }
