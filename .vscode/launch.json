@@ -9,44 +9,35 @@
       "request": "launch",
       "name": "performance",
       "program": "${workspaceFolder}/test/validate.performance.js",
-      "runtimeArgs": [
-        "--nolazy",
-        "-r",
-        "babel-register"
-      ]
+      "runtimeArgs": ["--nolazy", "-r", "babel-register"]
     },
     {
       "type": "node",
       "request": "launch",
       "name": "chain",
       "program": "${workspaceFolder}/test/validate.chain.js",
-      "runtimeArgs": [
-        "--nolazy",
-        "-r",
-        "babel-register"
-      ]
+      "runtimeArgs": ["--nolazy", "-r", "babel-register"]
     },
     {
       "type": "node",
       "request": "launch",
       "name": "validate",
       "program": "${workspaceFolder}/test/validate.validate.js",
-      "runtimeArgs": [
-        "--nolazy",
-        "-r",
-        "babel-register"
-      ]
+      "runtimeArgs": ["--nolazy", "-r", "babel-register"]
     },
     {
       "type": "node",
       "request": "launch",
       "name": "segment",
       "program": "${workspaceFolder}/test/validate.segment.js",
-      "runtimeArgs": [
-        "--nolazy",
-        "-r",
-        "babel-register"
-      ]
+      "runtimeArgs": ["--nolazy", "-r", "babel-register"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "default",
+      "program": "${workspaceFolder}/test/default.js",
+      "runtimeArgs": ["--nolazy"]
     }
   ]
 }
