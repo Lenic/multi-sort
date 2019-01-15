@@ -1,4 +1,5 @@
-const sort = require("../dist/src/quickSort2.js").default;
+const sort = require("../dist/src/heapSort2.js").default;
+// const sort = require("../dist/src/quickSort2.js").default;
 
 const original = [
   { x: 1, y: 2, index: 0 },
@@ -19,7 +20,11 @@ sort(original, (x, y) => {
     return true;
   }
 
-  if(x.x === y.x && x.index < y.index) {
+  if(x.x === y.x && x.y < y.y) {
+    return true;
+  }
+
+  if(x.x === y.x && x.y === y.y && x.index < y.index) {
     return true;
   }
 

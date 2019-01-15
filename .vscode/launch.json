@@ -38,6 +38,13 @@
       "name": "default",
       "program": "${workspaceFolder}/test/default.js",
       "runtimeArgs": ["--nolazy"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "defaultHeap",
+      "program": "${workspaceFolder}/test/defaultHeap.js",
+      "runtimeArgs": ["--nolazy"]
     }
   ]
 }
